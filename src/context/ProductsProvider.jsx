@@ -4,17 +4,16 @@ import api from "../services/config";
 const ProductContext = createContext();
 
 function ProductsProvider({ children }) {
-  const [products, SetProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   useEffect(() => {
     try {
       api.get("/products").then((res) => {
-        SetProducts(res);
+        setProducts(res);
       });
     } catch (error) {
       console.log(error.message);
     }
   }, []);
-  console.log(products);
 
   return (
     <ProductContext.Provider value={products}>
@@ -28,4 +27,4 @@ const useProducts = () => {
 };
 
 export default ProductsProvider;
-export {useProducts}
+export { useProducts };

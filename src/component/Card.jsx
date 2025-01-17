@@ -7,7 +7,6 @@ import styles from "./Card.module.css";
 
 function Card({ data }) {
   const { id, title, image, price } = data;
-  console.log(data);
   return (
     <div className={styles.card}>
       <img src={image} alt={title} />

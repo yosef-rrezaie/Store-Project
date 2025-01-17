@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useProducts } from "../context/ProductsProvider";
 import styles from "./ProductsPage.module.css";
 import Card from "../component/Card";
@@ -8,20 +8,30 @@ import { FaListUl } from "react-icons/fa";
 
 function ProductsPage() {
   const products = useProducts();
+
+  const [displayed, setDisplayed] = useState([]); // keep datils without send request to server
   const [search, setSearch] = useState("");
+  const [query, setQuery] = useState({});
+  useEffect(() => {
+    setDisplayed(products);
+  }, [products]);
   const searchHandler = () => {
-    console.log("search");
+    setQuery((query) => ({ ...query, search: search }));
   };
 
   const categoryHandler = (e) => {
     const { tagName } = e.target;
     if (tagName !== "LI") return;
     const category = e.target.innerText.toLowerCase();
-    console.log(category);
+    setQuery((query) => ({ ...query, category: category }));
   };
+
+  useEffect(() => {
+    console.log("hello");
+  }, [query]);
   return (
     <>
-      {products.length ? (
+      {displayed.length ? (
         <div>
           <div>
             <input
