@@ -5,6 +5,7 @@ import Card from "../component/Card";
 import Loader from "../component/Loader";
 import { ImSearch } from "react-icons/im";
 import { FaListUl } from "react-icons/fa";
+import { searchProducts, filterProducts } from "../helper/helper";
 
 function ProductsPage() {
   const products = useProducts();
@@ -27,11 +28,13 @@ function ProductsPage() {
   };
 
   useEffect(() => {
-    console.log("hello");
+    let finalProducts = searchProducts(products, query.search);
+    finalProducts = filterProducts(finalProducts, query.category);
+    setDisplayed(finalProducts);
   }, [query]);
   return (
     <>
-      {displayed.length ? (
+      {products.length ? (
         <div>
           <div>
             <input
@@ -46,7 +49,7 @@ function ProductsPage() {
           </div>
           <div className={styles.container}>
             <div className={styles.products}>
-              {products.map((p) => (
+              {displayed.map((p) => (
                 <Card key={p.id} data={p} />
               ))}
             </div>
