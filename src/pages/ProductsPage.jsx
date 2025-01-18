@@ -27,6 +27,7 @@ function ProductsPage() {
     const search = searchParams.get("search");
     if (category) query.category = category;
     if (search) query.search = search;
+    console.log(query);
     setQuery(query);
     setSearch(query.search || "");
   }, [products]);
@@ -52,7 +53,7 @@ function ProductsPage() {
                 <Card key={p.id} data={p} />
               ))}
             </div>
-            <SideBar setQuery={setQuery} />
+            <SideBar query={query} setQuery={setQuery} />
           </div>
         </div>
       ) : (
