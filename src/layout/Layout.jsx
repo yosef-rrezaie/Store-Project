@@ -3,9 +3,11 @@ import { Link } from "react-router-dom";
 import { PiShoppingCartSimpleBold } from "react-icons/pi";
 import { useCart } from "../context/CartProvider";
 import styles from "./Layout.module.css";
+import { useProducts } from "../context/ProductsProvider";
 
 function Layout({ children }) {
   const [state] = useCart();
+  const products = useProducts()
   return (
     <>
       <header className={styles.header}>

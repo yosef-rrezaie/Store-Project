@@ -1,0 +1,16 @@
+.basket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all .5s;
+}
+
+.basket p {
+    margin-bottom: 10px;
+    font-weight: 500;
+    color: grey;
+}
+
+.basket svg {
+    font-size: 120px ;
+}
